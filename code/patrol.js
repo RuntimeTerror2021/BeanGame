@@ -1,0 +1,1 @@
+export default function a(a=60,b=1){return{id:"patrol",require:["pos","area",],add(){this.on("collide",(c,a)=>{(a.isLeft()||a.isRight())&&(b=-b)})},update(){this.move(a*b,0)}}}

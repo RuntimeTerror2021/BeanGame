@@ -1,0 +1,1 @@
+export default function a(){let a=0,b=!1,c=1;return{id:"big",require:["scale"],update(){b&&(a-=dt())<=0&&this.smallify(),this.scale=this.scale.lerp(vec2(c),6*dt())},isBig:()=>b,smallify(){c=1,a=0,b=!1},biggify(d){c=2,a=d,b=!0}}}

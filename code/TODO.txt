@@ -1,0 +1,7 @@
+add mobile support, maybe controller
+add more powerups
+add more levels
+
+in future, maybe make bean game extension
+
+add speedrun time that shows on win/lose screens
