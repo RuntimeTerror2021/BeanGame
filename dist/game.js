@@ -2978,6 +2978,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   __name(loadAssets, "loadAssets");
 
   // code/main.js
+  console.dir(navigator);
   var dm = [0, 0, 255];
   var inter;
   var mins = 0;
@@ -3436,7 +3437,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onClick("bk", () => {
       go("lobby");
     });
-    var fts = ["Add mobile support, maybe controller", "Add more powerups", "Add more levels", "Maybe make bean game extension", "Add speedrun time that shows on win/lose screens", "Add more uniquely colored beans", "Add NFT Bean", "Add Easy, Normal, and Hard Modes"];
+    var fts = ["Add mobile support, maybe controller", "Add more powerups", "Add more levels", "Maybe make bean game extension", "Add speedrun time that shows on win/lose screens", "Add more uniquely colored beans", "Add NFT Bean", "Add Easy, Normal, and Hard Modes", "Add a GForm to request new features and give feedback"];
     for (let i = 0; i < fts.length; i++) {
       add([
         text("-" + fts[i], { size: 30 }),

@@ -4,6 +4,7 @@ import big from "./big"
 import patrol from "./patrol"
 import loadAssets from "./assets"
 
+
 var dm = [0,0,255]
 var inter;
 var mins = 0;
@@ -522,7 +523,7 @@ scene("future", () => {
 		go("lobby")
 	})
 
-	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Add more levels", "Maybe make bean game extension", "Add speedrun time that shows on win/lose screens", "Add more uniquely colored beans", "Add NFT Bean", "Add Easy, Normal, and Hard Modes"]
+	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Add more levels", "Maybe make bean game extension", "Add speedrun time that shows on win/lose screens", "Add more uniquely colored beans", "Add NFT Bean", "Add Easy, Normal, and Hard Modes", "Add a GForm to request new features and give feedback"]
 
 	for(let i = 0; i<fts.length; i++){
 		add([
@@ -1731,6 +1732,7 @@ scene("reset", () => {
 		MOVE_SPEED = 480
 	})
 })
+
 
 
 go("lobby")
