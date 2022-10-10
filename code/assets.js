@@ -22,6 +22,9 @@ export default function loadAssets() {
 	loadSprite("dwayne", "sprites/dwayne.png")
 	loadSprite("dirt", "sprites/dirt.png")
 	loadSprite("nftbean", "sprites/nftbean.png");
+    loadSprite("goldfly", "sprites/goldfly.png");
+    loadSprite("cloud", "sprites/cloud.png");
+    loadSprite("sand", "sprites/sand.png")
 	loadSound("coin", "sounds/score.mp3");
 	loadSound("powerup", "sounds/powerup.mp3");
 	loadSound("blip", "sounds/blip.mp3");

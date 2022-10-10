@@ -4,7 +4,6 @@ import big from "./big"
 import patrol from "./patrol"
 import loadAssets from "./assets"
 
-
 var dm = [0,0,255]
 var inter;
 var mins = 0;
@@ -26,7 +25,7 @@ loadAssets()
 // define some constants
 const JUMP_FORCE = 1320
 var MOVE_SPEED = 480
-const FALL_DEATH = 2400
+var FALL_DEATH = 2400
 let toBool = string => string === 'true' ? true : false;
 var f = toBool(localStorage["st2"]);
 var beans = ["Red Bean", "Orange Bean", "Yellow Bean", "Green Bean", "Cyan Bean", "Blue Bean", "Purple Bean", "Pink Bean", "Ink Bean", "Inverted Bean", "dwayne"]
@@ -468,7 +467,7 @@ const levelConf = {
 	],
 	"@": () => [
 		sprite("portal"),
-		area({ scale: 0.5, }),
+		area(/*{ scale: 0.5, }*/),
 		origin("bot"),
 		pos(0, -12),
 		"portal",
@@ -505,6 +504,26 @@ const levelConf = {
 		origin("bot"),
 		"secretdwayne"
 	],
+    "q": () => [
+        sprite("goldfly"),
+        area(),
+        solid(),
+        patrol(),
+        scale(0.75)
+    ],
+    "C": () => [
+        sprite("cloud"),
+        area(),
+        solid(),
+        patrol(),
+        
+    ],
+    "S": () => [
+        sprite("sand"),
+        area(),
+        solid(),
+        origin("bot")
+    ]
 }
 
 scene("future", () => {
@@ -523,7 +542,7 @@ scene("future", () => {
 		go("lobby")
 	})
 
-	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Add more levels", "Maybe make bean game extension", "Add speedrun time that shows on win/lose screens", "Add more uniquely colored beans", "Add NFT Bean", "Add Easy, Normal, and Hard Modes", "Add a GForm to request new features and give feedback"]
+	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Maybe make bean game extension", "Add more uniquely colored beans", "Add NFT Bean", "Coming up next: Add a Google Form to request new features and give feedback"]
 
 	for(let i = 0; i<fts.length; i++){
 		add([
@@ -545,7 +564,7 @@ scene("updates", () => {
 	// 	pos(0, 100)
 	// ])
 
-	var uds = ["Replaced most Rock terrain sprites with dirt in order to reduce lag", "Finding all easter eggs unlocks a new skin", "Easter egg count shows up in Inventory"]
+	var uds = ["Speedrun Times show up in win/lose screens",  "Added Easy, Normal, and God Modes"]
 	
 	for(let i = 0; i<uds.length; i++){
 		add([
@@ -625,7 +644,7 @@ scene("lobby", () => {
 		text("About"),
 		area(),
 		fixed(),
-		color(62, 63, 74),
+		color(207, 124, 0),
 		origin("center"),
 		pos(window.innerWidth/2, 480),
 		"info"
@@ -645,7 +664,7 @@ scene("lobby", () => {
 		text("Roadmap"),
 		area(),
 		fixed(),
-		color(0,33,115),
+		color(0, 242, 255),
 		origin("center"),
 		pos(window.innerWidth/2, 400),
 		"roadmap"
@@ -661,7 +680,7 @@ scene("lobby", () => {
 	})
 	
 	onClick("startButton", (sb) => {
-		go("game")
+		go("levels")
 	})
 
 	onClick("invButton", () => {
@@ -685,6 +704,547 @@ scene("lobby", () => {
 	})
 		
 });
+
+scene("levels", () => {
+
+	let diffs = ["Easy Mode", "Classic Mode", "God Mode"]
+	var c1, c2, c3
+    let bns = ["dwayne", "bean", "nftbean"]
+	
+	for(let i = 0; i < 3; i++){
+
+		if(diffs[i].includes("Easy")){
+			c1 = 0
+			c2 = 122
+			c3 = c1
+		} else if(diffs[i].includes("God")){
+			c2 = 0
+			c1 = 122
+			c3 = c2
+		} else {
+			c1 = 255
+			c2 = c1
+			c3 = c2
+		}
+
+        let ps = window.innerHeight/2
+
+        switch(c1){
+            case 0:
+                ps=window.innerHeight/2 - 200
+                break;
+            case 255:
+                ps = window.innerHeight/2
+                break;
+            case 122: 
+                ps = window.innerHeight/2 + 200
+            break;
+        }
+		
+		add([
+			text(`${diffs[i]}`, {size: 75}),
+			origin("center"),
+			pos(window.innerWidth/2, ps),
+			color(c1,c2,c3),
+			area(),
+			`${diffs[i].toLowerCase().replace(" ", "")}btn`
+		])
+        add([
+            sprite(bns[i]),
+            origin("center"),
+            pos(window.innerWidth/4, ps)
+        ])
+	}
+
+    
+
+	onClick("easymodebtn", () => {
+        FALL_DEATH = 2400
+		LEVELS = [
+			[
+				"",
+				"",
+				"",
+				"",
+				"  = q                 q       q     @=",
+				"==!==================================!",
+				"",
+				"",
+				"",	
+			],
+            [
+                "",
+                "=",
+                "==",
+                "===",
+                "====",
+                "=====",
+                "======@"
+            ],
+            [
+                "      =",
+                "     ==",
+                "    ===",
+                "   ====",
+                "  =====",
+                " ======   @",
+                "======="
+            ]
+		]
+        go("game")
+	})
+	
+	onClick("classicmodebtn", () => {
+        FALL_DEATH = 2400
+		LEVELS = [
+					[
+		"                           $",
+		"                           $",
+		"                           $",
+		"                           $",
+		"                           $",
+		"            $$         =   $",
+		"   %s     ====         !   $",
+		"                       !   $",
+		"                       !    ",
+		"        ^^      = >    !   @",
+		"================!======!====",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "+",
+	],
+	[
+		"     $    $    $    $     $",
+		"     $    $    $    $     $",
+		"                           ",
+		"                           ",
+		"                           ",
+		"                           ",
+		"                           ",
+		"  ^^>^^^>^^^^>^^^^>^^^>^@",
+		"===========================",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"           + =      =      =",
+	],
+    [
+        "        s                   @",
+        "                            ",
+        "   =                        ",
+        "                 =         ",
+        "        =              =     ",
+        "   =",
+        "=  >$$$$$$$$$>$$$$$$$>$$$$$$$$$=",
+        "!==============================!",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"+",
+    ],
+    [
+        "",
+        "        $",
+        "        =              @",
+        "    s        =         =",
+        "                   $",
+        "             =     =",
+        "    =",
+        "   $    =",
+        "   =",
+        "      $",
+        "$     =",
+        "=",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"              +",
+    ],
+    [
+        "",
+        "=",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "                 ^",
+        "           +    ^@",   
+        "",
+        "",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		" @",
+    ],
+    [
+		"    =^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ +",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"								s",
+		"",
+		"",
+		"",
+        "=    $     >      $$     >>    $$$$$  >  $     >   $$   $ $=",
+        "===========================================================",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "                  $     $        $  $       $             $",
+        "                  @     =    =      =   =   =      =      =",
+    ],
+    [
+        "",
+        "=",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "$$$$$$$$$+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
+        "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "====================================================",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "          $  $              $        $     $       @",
+        "=   =   ========  = === =   =    =   = =   =   =   =",
+    ],
+    [
+        "",
+        "=",
+        "",
+        " ",
+        "",
+        "                       !!!!!!!!!   %",
+        "           ============",
+        "          ==!!$!!!@  >  !!!!!!!=====!!",
+        "        ==!!!!!!!!====!!+  ",
+        "       =!!!$$$!!!====!!  g   !!!!!=",
+        "      ==!!!!!!!!!!!!$$$     !!!!!=======",
+        "     =!!$$!!!          !!!!!!",
+		"     ==!!!===  ====",
+		"^^^^^^^^^^^^^@ ^",
+		"$",
+		"$",
+		"$",
+		"$",
+		"$",
+		"$",
+		"$",
+		"$",
+		"$    %",
+		"^",
+		"!==",
+		"f @!!!!!===",
+		"f!!=!!!!=======$$$$$$$$$$$$",
+		"f!!!!!!!!!!!!!!!!!!============$$$$$",
+		"!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+		"   ===================",
+		"",		
+    ],
+	[
+		"",
+		"     %s",
+		"",
+		"",
+		"========",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"                       ====",
+		"                      =    ======",
+		"",
+		"                         ^",
+		"                         ^",
+		"                         ^@",
+		"                         ^^",
+		"+ @                    ========",
+	],
+			]
+		go("game")
+
+	})
+
+    onClick("godmodebtn", () => {
+        FALL_DEATH = 50000
+        LEVELS = [
+            [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "    C                                           ^        ^",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "                                                            @",
+            ],
+            [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "                                                SSSSSSSSSSSSSSSSS",
+                "q                                        SS  ",
+                "",
+                "",
+                "",
+                "",
+                " ",
+                "",
+                "                                                                          SSSSSSS^^^^^SSSSSSSSSSSSSSS",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "                                                                          @",
+            ],
+            [
+                [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$^^^^^^^$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
+                    "C",
+                        "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                        "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "                                     ",
+                    
+                ]
+            ]
+        ]
+        go("game")
+        
+    })
+	
+})
 
 scene("inventory", () => {
 	destroyAll("tml")
@@ -1257,6 +1817,13 @@ scene("game", ({ levelId, coins } = { levelId: lvtx, coins: 0 }) => {
 	}
 
 
+	// if(){
+
+		
+		
+	// 	location.replace("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjir7Ozmcz6AhWkj4kEHaSiAYcQwqsBegQIAxAB&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU")
+	// }
+
 	
 	const player = add([
 		sprite(y),
@@ -1317,7 +1884,7 @@ scene("game", ({ levelId, coins } = { levelId: lvtx, coins: 0 }) => {
 		}
 		
 	})
-
+ 
 	player.onCollide("portal", () => {
 		play("portal")
 		if (levelId + 1 < LEVELS.length) {
@@ -1631,7 +2198,7 @@ scene("game", ({ levelId, coins } = { levelId: lvtx, coins: 0 }) => {
 
 scene("lose", () => {
 	destroyAll("tml")
-	window.clearInterval(inter); mins=0;secs=0;ohs=0;; 
+	window.clearInterval(inter); 
 	add([
 		text("You Lose\n\n"),
 		color(255,100,100),
@@ -1645,6 +2212,15 @@ scene("lose", () => {
 		pos(center())
 	])
 
+	if(toBool(localStorage.st3)){
+		add([
+			text(`\n\nYour Time Was: ${mins}:${ohs}${secs}`),
+			origin("center"),
+			pos(center()),
+			color(207, 124, 0)
+		])
+		mins=0;secs=0;ohs=0;
+	}
 	
 	onKeyPress(() => {
 
@@ -1672,7 +2248,7 @@ scene("lose", () => {
 
 scene("win", () => {
 	destroyAll("tml")
-	window.clearInterval(inter); mins=0;secs=0;ohs=0;
+	window.clearInterval(inter); 
 	add([
 		text("You Win\n\n"),
 		color(100,255,100),
@@ -1680,13 +2256,20 @@ scene("win", () => {
 		pos(center())
 	])
 	add([
-		text("Press any key to continue", {size: 50}),
-		pos(0,100),
+		text("Press any key to continue\n", {size: 50}),
 		origin("center"),
 		pos(center())
 	])
-	if(localStorage.st3 == true){
-		
+
+	
+	if(toBool(localStorage.st3)){
+		add([
+			text(`\n\nYour Time Was: ${mins}:${ohs}${secs}`),
+			origin("center"),
+			pos(center()),
+			color(207, 124, 0)
+		])
+		mins=0;secs=0;ohs=0;
 	}
 	onKeyPress(() => {
 		if (!localStorage.getItem("wins")){
