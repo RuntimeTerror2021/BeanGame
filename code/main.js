@@ -542,7 +542,7 @@ scene("future", () => {
 		go("lobby")
 	})
 
-	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Maybe make bean game extension", "Add more uniquely colored beans", "Add NFT Bean", "Coming up next: Add a Google Form to request new features and give feedback"]
+	var fts = ["Add mobile support, maybe controller", "Add more powerups", "Maybe make bean game extension", "Add more uniquely colored beans"]
 
 	for(let i = 0; i<fts.length; i++){
 		add([
@@ -564,7 +564,7 @@ scene("updates", () => {
 	// 	pos(0, 100)
 	// ])
 
-	var uds = ["Speedrun Times show up in win/lose screens",  "Added Easy, Normal, and God Modes"]
+	var uds = ["Speedrun Times show up in win/lose screens",  "Added Easy, Normal, and God Modes", "Added Google Forms to request new features and give feedback"]
 	
 	for(let i = 0; i<uds.length; i++){
 		add([
@@ -669,8 +669,20 @@ scene("lobby", () => {
 		pos(window.innerWidth/2, 400),
 		"roadmap"
 	])
+
+    const formsBtn = add([
+        text("Forms", {size: 50}),
+        area(),
+        fixed(),
+        color(115,18,189),
+        "forms"
+    ])
 	
 
+    onClick("forms", () => {
+        go("gforms")
+    })
+    
 	onClick("roadmap", () => {
 		go("future")
 	})
@@ -704,6 +716,48 @@ scene("lobby", () => {
 	})
 		
 });
+
+scene("gforms", () => {
+    add([
+		text("Back...", {size: 60}),
+		color(192, 199, 139),
+		fixed(),
+		area(),
+		"bk"
+	]) //back button
+	onClick("bk", () => {
+		go("lobby")
+	})
+
+    add([
+        text("Feedback Form", {size:70}),
+        area(),
+        fixed(),
+        origin("center"),
+        color(155.2, 150.2, 0),
+        pos(window.innerWidth/2, window.innerHeight/3.5),
+        "fdbk"
+    ])
+
+    add([
+        text("New Feature Request Form", {size:70}),
+        area(),
+        fixed(),
+        origin("center"),
+        pos(window.innerWidth/2, window.innerHeight/2),
+        "nfrf"
+    ])
+
+    onClick("fdbk", () => {
+        // location.href = "https://forms.gle/3TcCrK1sw1RYUyG89"
+        window.open("https://forms.gle/3TcCrK1sw1RYUyG89", "_blank")
+    })
+
+    onClick("nfrf", () => {
+        alert("The request form is still under construction. It will be added soon.")
+    })
+    
+})
 
 scene("levels", () => {
 
@@ -1745,7 +1799,8 @@ scene("info", () => {
 	])
 
 	onClick("scrt", () => {
-		location.href = "https://secretrick.astleylevel.repl.co/"
+		// location.href = "https://secretrick.astleylevel.repl.co/"
+        window.open("https://secretrick.astleylevel.repl.co/", "_blank")
 	})
 
 	
