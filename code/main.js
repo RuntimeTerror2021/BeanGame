@@ -813,39 +813,44 @@ scene("levels", () => {
     
 
 	onClick("easymodebtn", () => {
-        FALL_DEATH = 2400
-		LEVELS = [
-			[
-				"",
-				"",
-				"",
-				"",
-				"  = q                 q       q     @=",
-				"==!==================================!",
-				"",
-				"",
-				"",	
-			],
-            [
-                "",
-                "=",
-                "==",
-                "===",
-                "====",
-                "=====",
-                "======@"
-            ],
-            [
-                "      =",
-                "     ==",
-                "    ===",
-                "   ====",
-                "  =====",
-                " ======   @",
-                "======="
-            ]
-		]
-        go("game")
+        if(localStorage.st4 == "true"){
+            alert("You need to turn off Checkpoints before you play Easy Mode.")
+            go("settings")
+        } else {
+            FALL_DEATH = 2400
+    		LEVELS = [
+    			[
+    				"",
+    				"",
+    				"",
+    				"",
+    				"  = q                 q       q     @=",
+    				"==!==================================!",
+    				"",
+    				"",
+    				"",	
+    			],
+                [
+                    "",
+                    "=",
+                    "==",
+                    "===",
+                    "====",
+                    "=====",
+                    "======@"
+                ],
+                [
+                    "      =",
+                    "     ==",
+                    "    ===",
+                    "   ====",
+                    "  =====",
+                    " ======   @",
+                    "======="
+                ]
+    		]
+            go("game")
+        }
 	})
 	
 	onClick("classicmodebtn", () => {
@@ -1137,8 +1142,14 @@ scene("levels", () => {
 	})
 
     onClick("godmodebtn", () => {
-        FALL_DEATH = 50000
-        LEVELS = [
+         
+        
+        if(localStorage.st4 == "true"){
+            alert("You need to turn off Checkpoints before you play God Mode.")
+            go("settings")
+        } else {
+            FALL_DEATH = 50000
+            LEVELS = [
             [
                 "",
                 "",
@@ -1244,57 +1255,56 @@ scene("levels", () => {
                 "                                                                          @",
             ],
             [
-                [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$^^^^^^^$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
+                "C",
                     "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                     "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$^^^^^^^$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
-                    "C",
-                        "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                        "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "                                     ",
-                    
-                ]
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "                                    @",
+                
             ]
         ]
-        go("game")
+            go("game") 
+        }
         
     })
 	
@@ -1545,7 +1555,7 @@ scene("settings", () => {
 		s3t = "ON"
 	} //timer var
 	
-	add([ //auto respawn button
+	add([ //speedrun timer button
 		text(`Speedrun Timer: ${s3t}`),
 		pos(window.innerWidth/2, 266),
 		color(97, 117, 103),
@@ -1610,9 +1620,9 @@ scene("settings", () => {
 		"s4"
 	])
 	add([
-		text("Turning checkpoints on will not reset your progress when you die\n\nTurning checkpoints off will reset your saved level", {size:25}),
+		text("Turning checkpoints on will not reset your progress when you die\n\nTurning checkpoints off will reset your saved level\n\nCheckpoints are only usable in Classic Mode (so turn this off if you do not plan to play Classic Mode)", {size:25}),
 		fixed(),
-		pos(window.innerWidth/2, 425),
+		pos(window.innerWidth/2, 455),
 		origin("center"),
 		color(97, 117, 103),
 	])

@@ -3681,39 +3681,44 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       ]);
     }
     onClick("easymodebtn", () => {
-      FALL_DEATH = 2400;
-      LEVELS = [
-        [
-          "",
-          "",
-          "",
-          "",
-          "  = q                 q       q     @=",
-          "==!==================================!",
-          "",
-          "",
-          ""
-        ],
-        [
-          "",
-          "=",
-          "==",
-          "===",
-          "====",
-          "=====",
-          "======@"
-        ],
-        [
-          "      =",
-          "     ==",
-          "    ===",
-          "   ====",
-          "  =====",
-          " ======   @",
-          "======="
-        ]
-      ];
-      go("game");
+      if (localStorage.st4 == "true") {
+        alert("You need to turn off Checkpoints before you play Easy Mode.");
+        go("settings");
+      } else {
+        FALL_DEATH = 2400;
+        LEVELS = [
+          [
+            "",
+            "",
+            "",
+            "",
+            "  = q                 q       q     @=",
+            "==!==================================!",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "=",
+            "==",
+            "===",
+            "====",
+            "=====",
+            "======@"
+          ],
+          [
+            "      =",
+            "     ==",
+            "    ===",
+            "   ====",
+            "  =====",
+            " ======   @",
+            "======="
+          ]
+        ];
+        go("game");
+      }
     });
     onClick("classicmodebtn", () => {
       FALL_DEATH = 2400;
@@ -4002,113 +4007,116 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       go("game");
     });
     onClick("godmodebtn", () => {
-      FALL_DEATH = 5e4;
-      LEVELS = [
-        [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "    C                                           ^        ^",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "                                                            @"
-        ],
-        [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "                                                SSSSSSSSSSSSSSSSS",
-          "q                                        SS  ",
-          "",
-          "",
-          "",
-          "",
-          " ",
-          "",
-          "                                                                          SSSSSSS^^^^^SSSSSSSSSSSSSSS",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "                                                                          @"
-        ],
-        [
+      if (localStorage.st4 == "true") {
+        alert("You need to turn off Checkpoints before you play God Mode.");
+        go("settings");
+      } else {
+        FALL_DEATH = 5e4;
+        LEVELS = [
+          [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "    C                                           ^        ^",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "                                                            @"
+          ],
+          [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "                                                SSSSSSSSSSSSSSSSS",
+            "q                                        SS  ",
+            "",
+            "",
+            "",
+            "",
+            " ",
+            "",
+            "                                                                          SSSSSSS^^^^^SSSSSSSSSSSSSSS",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "                                                                          @"
+          ],
           [
             "",
             "",
@@ -4156,9 +4164,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
             "",
             "                                     "
           ]
-        ]
-      ];
-      go("game");
+        ];
+        go("game");
+      }
     });
   });
   scene("inventory", () => {
@@ -4434,9 +4442,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "s4"
     ]);
     add([
-      text("Turning checkpoints on will not reset your progress when you die\n\nTurning checkpoints off will reset your saved level", { size: 25 }),
+      text("Turning checkpoints on will not reset your progress when you die\n\nTurning checkpoints off will reset your saved level\n\nCheckpoints are only usable in Classic Mode (so turn this off if you do not plan to play Classic Mode)", { size: 25 }),
       fixed(),
-      pos(window.innerWidth / 2, 425),
+      pos(window.innerWidth / 2, 455),
       origin("center"),
       color(97, 117, 103)
     ]);
@@ -4620,7 +4628,7 @@ Julien Ayyad, Sebastian Jakubek, Olive Pollina`, { size: 35 }),
       "scrt"
     ]);
     onClick("scrt", () => {
-      location.href = "https://secretrick.astleylevel.repl.co/";
+      window.open("https://secretrick.astleylevel.repl.co/", "_blank");
     });
     add([
       text("Back...", { size: 50 }),
@@ -4644,7 +4652,7 @@ Julien Ayyad, Sebastian Jakubek, Olive Pollina`, { size: 35 }),
   }
   __name(nakjs, "nakjs");
   nakjs();
-  scene("game", ({ levelId, coins } = { levelId: lvtx, coins: 0 }) => {
+  scene("game", ({ levelId, coins } = { levelId: 2, coins: 0 }) => {
     destroyAll("tml");
     window.clearInterval(inter);
     nakjs();
